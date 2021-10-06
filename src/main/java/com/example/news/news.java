@@ -3,6 +3,7 @@ package com.example.news;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
 import java.util.List;
 
 @Document(collection = "news")
@@ -14,13 +15,33 @@ public class news {
     private List<String> tags;
     private String text;
     private String title;
+    private String date;
+    private String imagelink;
 
-    public news(String publisher, String link, List<String> tags, String text, String title) {
+    public news(String publisher, String link, List<String> tags, String text, String title, String date, String imagelink) {
         this.publisher = publisher;
         this.link = link;
         this.tags = tags;
         this.text = text;
         this.title = title;
+        this.date = date;
+        this.imagelink = imagelink;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getImagelink() {
+        return imagelink;
+    }
+
+    public void setImagelink(String imagelink) {
+        this.imagelink = imagelink;
     }
 
     public String getId() {
