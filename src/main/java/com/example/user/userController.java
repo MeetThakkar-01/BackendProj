@@ -5,7 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 
@@ -47,4 +50,19 @@ public class userController {
             return new ResponseEntity<user>(u, HttpStatus.OK);
         }
     }
+
+   @PutMapping(value = "/{email}/profile")
+    @CrossOrigin(origins = "*")
+    public ResponseEntity<?> updateProfile(@PathVariable("email") String email, @RequestBody List<Integer> profile) {
+        if (userRepository.findByEmail(email) != null) {
+            user u = userRepository.findByEmail(email);
+            u.setProfile(profile);
+            userRepository.save(u);
+            return new ResponseEntity<String>("Success", HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<String>("User Not Found", HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

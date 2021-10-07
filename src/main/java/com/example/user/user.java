@@ -3,6 +3,9 @@ package com.example.user;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Document(collection = "user")
@@ -12,9 +15,9 @@ public class user {
 
     private String email;
     private String password;
-    List<Object> profile;
+    List<Integer> profile ;
 
-    public user(String email, String password, List<Object> profile) {
+    public user(String email, String password, List<Integer> profile) {
         this.email = email;
         this.password = password;
         this.profile = profile;
@@ -44,11 +47,11 @@ public class user {
         this.password = password;
     }
 
-    public List<Object> getProfile() {
+    public List<Integer> getProfile() {
         return profile;
     }
 
-    public void setProfile(List<Object> profile) {
+    public void setProfile(List<Integer> profile) {
         this.profile = profile;
     }
 }
