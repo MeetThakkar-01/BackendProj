@@ -4,6 +4,8 @@ package com.example.revenue;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
+
 @Document(collection = "revenue")
 public class revenue {
 
@@ -13,13 +15,23 @@ public class revenue {
     private String year;
     private long users_this_year;
     private long total_revenue;
+    private List<Integer> qoq_revenue;
 
     public revenue() {}
 
-    public revenue(String year, long users_this_year, long total_revenue) {
+    public revenue(String year, long users_this_year, long total_revenue, List<Integer> qoq_revenue) {
         this.year = year;
         this.users_this_year = users_this_year;
         this.total_revenue = total_revenue;
+        this.qoq_revenue = qoq_revenue;
+    }
+
+    public List<Integer> getQoq_revenue() {
+        return qoq_revenue;
+    }
+
+    public void setQoq_revenue(List<Integer> qoq_revenue) {
+        this.qoq_revenue = qoq_revenue;
     }
 
     public String getId() {
