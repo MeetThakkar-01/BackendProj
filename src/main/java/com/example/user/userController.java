@@ -32,7 +32,10 @@ public class userController {
     public ResponseEntity<?> userLogin(@RequestBody user u) {
         user u1 = userRepository.findByEmail(u.getEmail());
         if (u1 != null) {
-            return new ResponseEntity<user>(u1, HttpStatus.OK);
+            if(u1.getPassword().equals(u.getPassword()))
+                return new ResponseEntity<user>(u1, HttpStatus.OK);
+            else
+                return new ResponseEntity<String>("Incorrect Password", HttpStatus.NOT_ACCEPTABLE);
         }
         else {
             return new ResponseEntity<String>("User Not Found", HttpStatus.NOT_FOUND);
